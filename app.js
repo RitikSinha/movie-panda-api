@@ -5,6 +5,8 @@ const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
+//routes 
+const movieRoute = require('./routes/movieRoute');
 //middlewares
 app.use(cors());
 app.use(express.json());require('dotenv').config();
@@ -14,9 +16,13 @@ app.use(express.urlencoded({
   }));
 
 
+  //main app
+
+app.use("/api",movieRoute);  
+
 
 app.get("/",(req,res)=>{
-    res.send("moviepanda")
+   return  res.json( {msg :"moviepanda"});
 })
 
 //connecting to database
